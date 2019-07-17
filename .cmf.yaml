@@ -34,3 +34,4 @@ PROMPT:
   #       DESC: "Work In Progress"
 # TEMPLATE: "{{JIRA-TASK}} ({{CHANGE}}): {{MESSAGE}}{{LABEL}}"
 TEMPLATE: "{{JIRA-TASK}} ({{CHANGE}}): {{MESSAGE}}"
+
