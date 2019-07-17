@@ -14,7 +14,7 @@ PROMPT:
       - VALUE: "style :lipstick:"
         DESC: "A code change to improve clean code"
       - VALUE: "build-ci :construction-worker:"
-        DESC: "Changes that affect the build system and/or CI configuratio files and scripts"
+        DESC: "Changes that affect the build system and/or CI configuration files and scripts"
       - VALUE: "refactor :hammer:"
         DESC: "A code change"
       - VALUE: "docs :books:"
