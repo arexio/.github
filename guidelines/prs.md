@@ -19,3 +19,5 @@ All the branches should be named following the standard: `feature/{{ JIRA_TASK }
 Commit messages **must** be meaningful and **must** follow the same standard: `{{ JIRA-TASK }} ({{ CHANGE }}): {{ MESSAGE }}`.
 
 Luckily you can easily follow this guidelines easily because each repo you work in should have a `.cmf.yaml` file on its root with the standard. To use it you just need to run `npm i -g go-cmf`. Then when you want to commit your staged changes just type `cmf` and follow the instructions.
+
+All you need to make sure is that when you create commit messages is that the **Jira Task ID** when you are working on a feature branch only has the jira task number. E.g., the feature branch `feature/ARX-1234-some-branch-description` should have `ARX-1234`. For now the CMF tool does not support a way for us to automate that but there is a [discussion open](https://github.com/walmartdigital/commit-message-formatter/issues/10) to add that functionality to the config files.
