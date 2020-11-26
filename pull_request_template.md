@@ -1,6 +1,6 @@
 ### Please check if the PR fulfills these requirements
 
-> [PR Guidelines](https://github.com/arexio/.github/blob/master/guidelines/prs.md)
+> [Development Guidelines](https://github.com/arexio/.github/blob/master/guidelines/dev_guidelines.md)
 
 - [ ] The PR title follows the guidelines;
 - [ ] The branch name follows the guidelines;
