@@ -21,7 +21,7 @@ jobs:
           for path in $paths; do
             # NOTE output file detection is required since terraform-docs GH Action's default value overrides the value set in the config file
             output_file=$(grep -E "^  file:" $path/.terraform-docs.yml | sed -E "s/.*\:[\ ]*([0-9a-zA-Z.-_]+)\$/\1/")
-            subpaths=$(find $path -maxdepth 2 -mindepth 2 -name "main.tf" | sed -E "s#/[a-zA-Z.-]+\$##; s#^\./##" | sort)
+            subpaths=$(find $path -maxdepth 2 -mindepth 2 -name "main.tf" | sed -E "s#/[a-zA-Z.-]+\$##" | sort)
             for subpath in $subpaths; do
               name=${subpath##*/}
               if [[ ${subpath%/*} == *modules ]]; then
@@ -53,9 +53,7 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v13.1
         with:
-          files: |
-            ${{ matrix.path }}/../.terraform-docs.yml
-            **.tf
+          files: '**.tf'
       - name: Generate terraform docs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
