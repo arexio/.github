@@ -54,7 +54,7 @@ jobs:
         uses: tj-actions/changed-files@v13.1
         with:
           files: |
-            ../.terraform-docs.yml
+            ${{ matrix.path }}/../.terraform-docs.yml
             **.tf
       - name: Generate terraform docs
         env:
