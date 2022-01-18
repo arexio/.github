@@ -59,7 +59,7 @@ jobs:
       - name: Generate terraform docs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        if: steps.changed-files.outputs.any_changed == "true"
+        if: steps.changed-files.outputs.any_changed == 'true'
         uses: terraform-docs/gh-actions@v0.11.0
         with:
           config-file: ../.terraform-docs.yml
