@@ -1,34 +1,36 @@
-name: PR Lint
+name: PR Style Check
 
 on:
   pull_request:
     branches:
       - main
-    types: [opened, edited, reopened]
+    types:
+      - opened
+      - edited
+      - reopened
+      - synchronize
 
 jobs:
-  pr-lint:
-    if: github.actor != 'renovate[bot]'
+  pr-style-check:
+    name: Title and Commit messages format
     runs-on: [self-hosted, simple]
+    env:
+      commit_message_format_regex: '^[A-Z]+-[0-9]+\s(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test){1}!?\:\s\w.*'
     steps:
-      - uses: morrisoncole/pr-lint-action@v1.5.0
+      - name: Check Pull Request title
+        uses: gsactions/commit-message-checker@v2
         with:
-          title-regex: '^([A-Z]+-[0-9]+) ((build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test){1}!?)\:\s([A-Za-z0-9].*)'
-          on-failed-regex-fail-action: true
-          on-failed-regex-request-changes: true
-          on-failed-regex-create-review: true
-          on-failed-regex-comment: |
-            PR title does not match with regex: `%regex%`
-
-            `(jira task) [change type](! if breaking change): [message]`
-
-            :white_check_mark:
-              - OPS-101 chore: Something awesome
-              - OPS-101 chore!: Something awesome
-              - LEN-101 feat: AAAAAAA
-
-            :x:
-              - something awesome
-              - chore: Something awesome
-              - OPS-101 random: Something awesome
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          pattern: ${{ env.commit_message_format_regex }}
+          error: 'PR title must follow the commit message format standard.'
+          excludeDescription: 'true'
+          accessToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check Pull Request commit messages
+        if: always()
+        uses: gsactions/commit-message-checker@v2
+        with:
+          pattern: ${{ env.commit_message_format_regex }}
+          error: 'PR commit messages must follow the commit message format standard.'
+          excludeDescription: 'true'
+          excludeTitle: 'true'
+          checkAllCommitMessages: 'true'
+          accessToken: ${{ secrets.GITHUB_TOKEN }}
