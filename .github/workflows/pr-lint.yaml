@@ -13,7 +13,7 @@ on:
 jobs:
   pr-style-check:
     name: Title and Commit messages format
-    runs-on: [self-hosted, simple]
+    runs-on: ubuntu-latest
     env:
       commit_message_format_regex: '^[A-Z]+-[0-9]+\s(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test){1}!?\:\s\w.*'
     steps:
