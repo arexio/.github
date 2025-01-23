@@ -4,7 +4,7 @@ on: workflow_call
 
 jobs:
   prepare:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.detect.outputs.matrix }}
     steps:
@@ -39,7 +39,7 @@ jobs:
       run:
         working-directory: ${{ matrix.path }}
     needs: [prepare]
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     strategy:
       # NOTE parallel run is not possible due to race conditions when pushing changes to the branch
       max-parallel: 1
